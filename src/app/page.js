@@ -1,19 +1,24 @@
-// app/page.js
 import posts from '../../data/posts.json';
 import Link from 'next/link';
 
 export default function Home() {
   return (
     <div className="p-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {posts.map((post, index) => {
+      {posts.map((post) => {
         const slug = post.postTitle.toLowerCase().replace(/\s+/g, '-');
 
         return (
-          <main>
-            <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
-              <img src={post.postPicUrl} alt={post.postTitle} className="w-full h-48 object-cover" />
+          <main key={post.postTitle}>
+            <div className="bg-white rounded-lg shadow-md overflow-hidden">
+              <img
+                src={post.postPicUrl}
+                alt={post.postTitle}
+                className="w-full h-48 object-cover"
+              />
               <div className="p-4">
-                <h2 className="text-gray-800 text-xl font-semibold mb-2">{post.postTitle}</h2>
+                <h2 className="text-gray-800 text-xl font-semibold mb-2">
+                  {post.postTitle}
+                </h2>
                 <p className="text-gray-600 mb-4">{post.postDetails}</p>
                 <Link
                   href={`/viewpost/${slug}`}
